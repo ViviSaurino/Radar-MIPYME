@@ -4,16 +4,12 @@
 Cargar fuentes crudas (CENEC, denuncias, llamadas, cámaras, ENAPRES si aplica) a **data_clean/** en CSV limpios.
 
 ## Entradas esperadas
-- `data_raw/Callao_CENEC.xlsx` (empresas, e idealmente `ingresos_anuales` y `ciiu`)
+- `data_raw/Callao_CENEC.xlsx` (empresas, e idealmente *ingresos_anuales* y *ciiu*)
 - `data_raw/DATASET_Denuncias_Policiales.xlsx`
-- `data_raw/camaras_incidencias_callao.xlsx`
+- `data_raw/camaras_incindencias_callao.xlsx`
 
 ## Salidas
-- `data_clean/clean_cenec.csv`, `clean_denuncias.csv`, `clean_llamadas.csv` …
-
-NA
-```
-
+- `data_clean/clean_cenec.csv`,  `clean_denuncias.csv`,  `clean_llamadas.csv` …
 
 ### Código completo (paso2_limpieza_integracion.R)
 
