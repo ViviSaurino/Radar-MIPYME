@@ -1,13 +1,18 @@
 # Paso 7 — Agrupamiento (borrador)
 
 ## Objetivo
-Probar K-means / Ward / DBSCAN con variables de tasas.
+Explorar K-means / Ward / DBSCAN con variables de tasas (y opcionalmente ingresos).
 
-## Cómo reproducir
+## Código
 ```r
 library(readr); library(dplyr)
 d <- read_csv('data_out/data_ml.csv', show_col_types = FALSE) |> distinct(distrito, anio, .keep_all = TRUE)
-X <- d |> select(denuncias_por_1k_emp, llamadas_por_1k_emp) |> scale() |> as.matrix()
-set.seed(123); k3 <- kmeans(X, centers = 3, nstart = 25)
-table(k3$cluster)
+vars <- c('denuncias_por_1k_emp','llamadas_por_1k_emp')
+if ('ingresos_anuales' %in% names(d)) vars <- c(vars,'ingresos_anuales')
+X <- d |> select(all_of(vars)) |> mutate(across(everything(), as.numeric)) |> scale() |> as.matrix()
+
+set.seed(123); km3 <- kmeans(X, centers=3, nstart=25)
+table(km3$cluster)
 ```
+
+El tablero final ya incorpora clustering interactivo en la pestaña *Clustering*.
