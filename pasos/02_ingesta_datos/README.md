@@ -27,3 +27,11 @@ write_csv(den, 'data_clean/clean_denuncias.csv')
 llam <- readxl::read_xlsx('data_raw/camaras_incidencias_callao.xlsx') |> norm_names()
 write_csv(llam, 'data_clean/clean_llamadas.csv')
 ```
+
+
+### Código completo (paso2_limpieza_integracion.R)
+
+```r
+
+```
+
