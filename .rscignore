@@ -1,0 +1,9 @@
+data_raw/
+data/tmp/
+docs/
+*.qmd
+*.xlsx
+*.xls
+*.pdf
+.git/
+.Rproj.user/

@@ -1,0 +1,19 @@
+# R / RStudio
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+
+# Datos y docs pesados
+data_raw/
+data/tmp/
+docs/
+*.qmd
+*.xlsx
+*.xls
+*.pdf
+*.zip
+
+# rsconnect (tokens y artefactos de deploy)
+rsconnect/
+.Renviron
