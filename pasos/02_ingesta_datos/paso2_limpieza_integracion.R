@@ -15,7 +15,7 @@ DIR_RAW   <- "data_raw"
 DIR_CLEAN <- "data_clean"
 DIR_OUT   <- "data_out"
 
-if (!dir.exists(DIR_RAW))   stop("No existe la carpeta "", DIR_RAW, "".")
+if (!dir.exists(DIR_RAW))   stop(paste0("No existe la carpeta '", DIR_RAW, "'."))
 if (!dir.exists(DIR_CLEAN)) dir.create(DIR_CLEAN, recursive = TRUE)
 if (!dir.exists(DIR_OUT))   dir.create(DIR_OUT,   recursive = TRUE)
 
@@ -41,7 +41,14 @@ year_from_filename <- function(path){
   if (length(y) == 1 && is.finite(y)) y else NA_integer_
 }
 read_any_with_year <- function(path){
-  df <- readxl::read_excel(path)
+  ext <- tolower(tools::file_ext(path))
+  df <- if (ext %in% c("xlsx","xls")) {
+    readxl::read_excel(path)
+  } else if (ext == "csv") {
+    readr::read_csv(path, show_col_types = FALSE, progress = FALSE)
+  } else {
+    stop("Extensión no soportada: ", ext, " (", basename(path), ")")
+  }
   y  <- year_from_filename(basename(path))
   df$anio_hint <- if (!is.na(y)) as.integer(y) else NA_integer_
   df
@@ -57,10 +64,10 @@ pick_file <- function(pattern, dir = DIR_RAW){
   f[1]
 }
 
-f_cenec     <- pick_file(".*CENEC.*\\.xlsx$")
-f_denuncias <- pick_file("DATASET.*Denuncias.*\\.xlsx$")
-f_llamadas  <- pick_file("^llamadas.*emergencias.*\\.xlsx$")
-f_camaras   <- pick_file("^camaras.*callao.*\\.xlsx$")
+f_cenec     <- pick_file("CENEC.*.(xlsx|csv)$")
+f_denuncias <- pick_file("DATASET.*Denuncias.*.(xlsx|csv)$")
+f_llamadas  <- pick_file("^llamadas.*emergencias.*.(xlsx|csv)$")
+f_camaras   <- pick_file("^camaras.*callao.*.(xlsx|csv)$")
 
 message("\nArchivos usados:",
         "\n- CENEC:     ", basename(f_cenec),
