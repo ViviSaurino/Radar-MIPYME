@@ -11,7 +11,7 @@ Cargar fuentes crudas (CENEC, denuncias, llamadas, cámaras, ENAPRES si aplica) 
 ## Salidas
 - `data_clean/clean_cenec.csv`,  `clean_denuncias.csv`,  `clean_llamadas.csv` …
 
-### Código completo (paso2_limpieza_integracion.R)
+### Código completo
 
 ```r
 
