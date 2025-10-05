@@ -17,3 +17,7 @@ docs/
 # rsconnect (tokens y artefactos de deploy)
 rsconnect/
 .Renviron
+.Rproj.user
+.httr-oauth
+.DS_Store
+.quarto
