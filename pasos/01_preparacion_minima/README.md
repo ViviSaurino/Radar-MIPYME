@@ -15,17 +15,8 @@ pasos/            # documentación por paso
 ## Reglas de versionado
 Archivos pesados y sensibles se agregan a `.gitignore` (xlsx, pdf, qmd, data_raw/, rsconnect/, etc.).
 
-## Código
-```r
-options(stringsAsFactors = FALSE)
-dirs <- c('data_clean','data_out','app','pasos')
-invisible(lapply(dirs, dir.create, showWarnings = FALSE))
 
-pkgs <- c('readr','readxl','dplyr','tidyr','janitor','ggplot2','stringi')
-inst <- !pkgs %in% rownames(installed.packages()); if(any(inst)) install.packages(pkgs[inst])
-```
-
-## Código completo (auditor_excel.R)
+## Código completo
 ```r
 ### Paso 1 — Auditor de archivos Excel
 # Lee todos los .xlsx, estandariza nombres de columnas y sugiere campos clave (ubigeo/fecha/año)
