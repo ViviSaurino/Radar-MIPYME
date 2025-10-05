@@ -1,15 +1,16 @@
 # Paso 5 — EDA básica
 
 ## Objetivo
-- (Escribe aquí el objetivo del paso).
+Entender distribuciones, outliers y tendencias.
 
-## Entradas
-- (Archivos de entrada si aplica).
-
-## Salidas
-- (Archivos de salida si aplica).
-
-## Cómo reproducir
+## Código de ejemplo
 ```r
-# Coloca aquí comandos R o scripts a ejecutar
+library(readr); library(dplyr); library(ggplot2)
+df <- read_csv('data_out/data_ml.csv', show_col_types = FALSE)
+ggplot(df, aes(denuncias_por_1k_emp)) + geom_histogram(bins = 30)
+df |>
+  group_by(distrito) |>
+  summarise(media = mean(denuncias_por_1k_emp, na.rm = TRUE)) |>
+  arrange(desc(media)) |>
+  head(10)
 ```
