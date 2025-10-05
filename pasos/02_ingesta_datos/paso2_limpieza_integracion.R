@@ -1,23 +1,3 @@
-# Paso 2 — Ingesta de datos
-
-## Objetivo
-Cargar fuentes crudas (CENEC, denuncias, llamadas, cámaras, ENAPRES si aplica) a **data_clean/** en CSV limpios.
-
-## Entradas esperadas
-- `data_raw/Callao_CENEC.xlsx` (empresas, e idealmente `ingresos_anuales` y `ciiu`)
-- `data_raw/DATASET_Denuncias_Policiales.xlsx`
-- `data_raw/camaras_incidencias_callao.xlsx`
-
-## Salidas
-- `data_clean/clean_cenec.csv`, `clean_denuncias.csv`, `clean_llamadas.csv` …
-
-NA
-```
-
-
-### Código completo (paso2_limpieza_integracion.R)
-
-```r
 
 # PASO 2 — Limpieza e integración (incluye Cámaras + chequeos)  [FIX anio_hint]
 # ------------------------------------------------------------------------------
@@ -268,6 +248,4 @@ if (nrow(dup) > 0) message("⚠️ Ojo: hay llaves duplicadas en data_clean. Rev
 cat("\n✅ Listo:",
     "\n- ", file.path(DIR_CLEAN, "data_clean.csv"), " (conteos)",
     "\n- ", file.path(DIR_OUT,   "data_ml.csv"),    " (tasas por 1,000 empresas)\n")
-
-```
 
