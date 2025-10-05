@@ -1,16 +1,13 @@
 # Paso 5 — EDA básica
 
 ## Objetivo
-Entender distribuciones, outliers y tendencias.
+Validar rangos, distribuciones y outliers antes del tablero.
 
-## Código de ejemplo
+## Cómo reproducir
 ```r
 library(readr); library(dplyr); library(ggplot2)
-df <- read_csv('data_out/data_ml.csv', show_col_types = FALSE)
-ggplot(df, aes(denuncias_por_1k_emp)) + geom_histogram(bins = 30)
-df |>
-  group_by(distrito) |>
-  summarise(media = mean(denuncias_por_1k_emp, na.rm = TRUE)) |>
-  arrange(desc(media)) |>
-  head(10)
+d <- read_csv('data_out/data_ml.csv', show_col_types = FALSE)
+summary(d[,c('n_empresas','n_denuncias','n_llamadas','denuncias_por_1k_emp','llamadas_por_1k_emp')])
+ggplot(d, aes(denuncias_por_1k_emp)) + geom_histogram(bins=30)
+ggplot(d, aes(llamadas_por_1k_emp)) + geom_histogram(bins=30)
 ```

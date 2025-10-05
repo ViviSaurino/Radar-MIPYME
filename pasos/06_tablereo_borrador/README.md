@@ -1,9 +1,13 @@
-# Paso 6 — Tablero (borrador local)
+# Paso 6 — Tablero (borrador)
 
 ## Objetivo
-Probar en local la app con `shinyApp(ui, server)`.
+Probar la app Shiny local con `app/app.R` y ajustar inputs/plots.
 
-## Cómo correr
+## Cómo reproducir
 ```r
-source('app/app.R')  # o abrir app/app.R y hacer Run App
+shiny::runApp('app')   # o abre app/app.R y pulsa Run
 ```
+
+## Notas
+- Si faltan paquetes en shinyapps.io, se instalan automáticamente al publicar.
+- Usa `.rscignore` para no subir data pesada al deploy.

@@ -3,22 +3,20 @@
 ## Objetivo
 Dejar listo el entorno de trabajo, estructura de carpetas y dependencias.
 
-## Estructura esperada (mínimo)
+## Estructura esperada
 ```text
-data_raw/         # datos originales (no versionar)
+data_raw/         # datos crudos (NO versionar)
 data_clean/       # intermedios limpios
-data_out/         # salidas listas para app (versionar)
-app/              # Shiny (app.R está aquí)
+data_out/         # salidas para Shiny (SÍ versionar)
+app/              # Shiny (app.R)
 pasos/            # documentación por paso
 ```
 
-## Código de referencia
+## Cómo reproducir
 ```r
 options(stringsAsFactors = FALSE)
 dir.create('data_clean', showWarnings = FALSE)
 dir.create('data_out',  showWarnings = FALSE)
-# instala paquetes si hiciera falta:
-pkgs <- c('dplyr','tidyr','readr','janitor','ggplot2')
-inst <- !pkgs %in% rownames(installed.packages())
-if (any(inst)) install.packages(pkgs[inst])
+pkgs <- c('readr','readxl','dplyr','tidyr','janitor','ggplot2')
+inst <- !pkgs %in% rownames(installed.packages()); if(any(inst)) install.packages(pkgs[inst])
 ```

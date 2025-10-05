@@ -1,13 +1,13 @@
-# Paso 7 — Clustering (borrador y validación)
+# Paso 7 — Agrupamiento (borrador)
 
 ## Objetivo
-Explorar K-means / Ward / DBSCAN con métricas de tasas.
+Probar K-means / Ward / DBSCAN con variables de tasas.
 
-## Código de ejemplo
+## Cómo reproducir
 ```r
-library(readr); library(dplyr);
-df <- read_csv('data_out/data_ml.csv', show_col_types = FALSE)
-X  <- df |> select(denuncias_por_1k_emp, llamadas_por_1k_emp) |> as.matrix() |> scale()
-set.seed(123); km <- kmeans(X, centers = 3, nstart = 20)
-table(km$cluster)
+library(readr); library(dplyr)
+d <- read_csv('data_out/data_ml.csv', show_col_types = FALSE) |> distinct(distrito, anio, .keep_all = TRUE)
+X <- d |> select(denuncias_por_1k_emp, llamadas_por_1k_emp) |> scale() |> as.matrix()
+set.seed(123); k3 <- kmeans(X, centers = 3, nstart = 25)
+table(k3$cluster)
 ```

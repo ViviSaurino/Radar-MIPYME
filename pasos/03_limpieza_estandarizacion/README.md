@@ -1,23 +1,25 @@
 # Paso 3 — Limpieza y estandarización
 
 ## Objetivo
-Estandarizar nombres, ubigeos, fechas; quitar duplicados; crear llaves.
+Estandarizar nombres, corregir tipos, asegurar llaves (ubigeo–distrito–año).
 
-## Código de ejemplo
+## Cómo reproducir
 ```r
-library(dplyr); library(stringi); library(readr); library(janitor)
-# Lee limpios del Paso 2 (o de data_clean/ si ya los guardaste)
-# cenec     <- read_csv('data_clean/clean_cenec.csv')
-# denuncias <- read_csv('data_clean/clean_denuncias.csv')
+library(dplyr); library(janitor); library(readr); library(stringi)
 
-normalize <- function(x){
-  x |>
-    mutate(across(where(is.character), ~stri_trans_general(., 'Latin-ASCII'))) |>
-    mutate(across(where(is.character), toupper)) |>
-    clean_names()
+fix_txt <- function(x){
+  x <- toupper(x); x <- stringi::stri_trans_general(x, 'Latin-ASCII'); trimws(x)
 }
-# cenec     <- normalize(cenec)
-# denuncias <- normalize(denuncias)
-# write_csv(cenec,     'data_clean/clean_cenec.csv')
-# write_csv(denuncias, 'data_clean/clean_denuncias.csv')
+
+den <- read_csv('data_clean/clean_denuncias.csv', show_col_types = FALSE) |>
+  clean_names() |> mutate(distrito = fix_txt(distrito))
+write_csv(den, 'data_clean/clean_denuncias.csv')
+
+llam <- read_csv('data_clean/clean_llamadas.csv', show_col_types = FALSE) |>
+  clean_names() |> mutate(distrito = fix_txt(distrito))
+write_csv(llam, 'data_clean/clean_llamadas.csv')
+
+cenec <- read_csv('data_clean/clean_cenec.csv', show_col_types = FALSE) |>
+  clean_names() |> mutate(distrito = fix_txt(distrito))
+write_csv(cenec, 'data_clean/clean_cenec.csv')
 ```
